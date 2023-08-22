@@ -105,12 +105,12 @@ function beginGame() {
     document.body.style.backgroundColor = "grey";
 
     let moreChanceForCompSpawn = function() {
-        if (randChanceForCompSpawn >= 400) {
+        if (randChanceForCompSpawn >= 300) {
             randChanceForCompSpawn -= 50;
-            setTimeout(()=>{moreChanceForCompSpawn()}, 5000);
+            setTimeout(()=>{moreChanceForCompSpawn()}, 8000);
             console.log(randChanceForCompSpawn);
         }
-        if (randChanceForCompSpawn < 400) {randChanceForCompSpawn = 399};
+        if (randChanceForCompSpawn < 300) {randChanceForCompSpawn = 299};
     }
     moreChanceForCompSpawn();
 
@@ -147,6 +147,7 @@ function beginGame() {
     }
 
     player = new Player(0, 0, 2);
+    player.setPos(window_width / 2 - (vmaxToPx(4) / 2), window_height - vmaxToPx(6));
     // player = new Player(window_width / 2 - (vmaxToPx(4) / 2), window_height - vmaxToPx(6), 2); glitches when you reload screen for some reason
     dragon = new Dragon();
 
@@ -371,7 +372,7 @@ function beginGame() {
     pauseMenu.appendChild(unGlitchText);
     unGlitchText.classList.add("pauseMenuUnglitchText");
     unGlitchText.innerText = "Click me if character is glitched and cannot move";
-    unGlitchText.addEventListener("click", () => {player.setPos(0, 0); resumeGame()});
+    unGlitchText.addEventListener("click", () => {player.setPos(window_width / 2 - (vmaxToPx(4) / 2), window_height - vmaxToPx(6)); resumeGame()});
 
     pauseGame = function(withMenu = true) {
         gamePaused = true;
