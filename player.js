@@ -1,5 +1,5 @@
 import Character from "./character.js";
-import { vmaxToPx, window_height, window_width, characterList, compoundList, gamePaused, looseGame } from "./script.js";
+import { vmaxToPx, window_height, window_width, characterList, compoundList, gamePaused, looseGame, dragon } from "./script.js";
 import { boxCollisionDetection } from "./character.js";
 
 export default class Player extends Character {
@@ -65,6 +65,39 @@ export default class Player extends Character {
             this.health += healPoints;
             this.healthbar.style.width = 20 - ((this.initialHealth - this.health) * (20 / this.initialHealth)) + "vmax";
         }
+    }
+
+    updatePos(x, y) {
+        if (this.x + x < 0) {
+            this.setPos(0, this.y);
+            x = 0;
+        }
+        if (this.y + y < dragon.y + (dragon.widthPx / 2)) {
+            y = 0;
+        }
+        if (this.x + this.widthPx + x > window_width) {
+            this.setPos(window_width - this.widthPx, this.y);
+            x = 0;
+        }
+        if (this.y + this.heightPx + y > window_height) {
+            this.setPos(this.x, window_height - this.heightPx)
+            y = 0
+        }
+        
+        characterList.forEach(character => {
+            if (!this.nonCollidable && !character.nonCollidable && character != this && 
+                boxCollisionDetection(this.x + x, this.y + y, this.widthPx, this.heightPx,
+                character.x, character.y, character.widthPx, character.heightPx)) {x = 0; y = 0};
+        });
+
+        if (x == 0 && y == 0) return 1;
+
+
+        this.x += x;
+        this.y += y;
+        
+        this.divElem.style.left = this.x + "px";
+        this.divElem.style.top = this.y + "px";
     }
 }
 
