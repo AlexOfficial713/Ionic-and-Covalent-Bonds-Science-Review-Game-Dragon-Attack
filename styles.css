@@ -1,0 +1,70 @@
+* {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.character {
+    width: var(--characterWidth);
+    height: var(--characterHeight);
+    opacity: 100%;
+}
+
+.symbol-text {
+    text-align: center;
+    font-size: var(--symbolFontSize);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    overflow: hidden;
+    width: 2000px;
+    height: 2000px;
+}
+
+.sword {
+    width: 1.5vmax;
+    height: 6.5vmax;
+    transform: rotate(var(--swordRotation, 0deg));
+    position: absolute;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pauseMenuButtom {
+    position: absolute;
+    left: 50%;
+    width: 15vmax;
+    height: 4vmax;
+    background-color: grey;
+    border: 0.4vmax solid red;
+    transition-duration: 500ms;
+    cursor: pointer;
+}
+
+.pauseMenuButtom:hover {
+    width: 17vmax;
+    height: 6vmax;
+    border: 0.4vmax solid green;
+}
+
+.pauseMenuUnglitchText {
+    position: absolute;
+    top: 98%;
+    left: 2%;
+    transform: translate(-2%, -98%);
+    color: red;
+    font-size: 150%;
+    transition-duration: 500ms;
+    cursor: grab;
+}
+
+.pauseMenuUnglitchText:hover {
+    color: green;
+    font-size: 160%;
+}

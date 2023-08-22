@@ -1,0 +1,116 @@
+attractionForces() {
+    characterList.forEach(character => {
+        if (character == this) return 1;
+        if (character.neutral || this.neutral) return 1;
+
+        let x1 = pxToVmax(this.x + (this.widthPx / 2));
+        let y1 = pxToVmax(this.y + (this.heightPx / 2));
+        
+        let x2 = pxToVmax(character.x + (character.widthPx / 2));
+        let y2 = pxToVmax(character.y + (character.heightPx / 2));
+
+        let distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        let MULTIPLIER = 1.272727272727273 * this.electronegativity + 0.10909090909090902; //0.7 least negativity -> 1; 4.0 most negativity -> 5.2
+        let k = MULTIPLIER * distance;
+        let acceleration = k / Math.pow(distance, 2);
+        let vx = acceleration * (x2 - x1) / distance;
+        let vy = acceleration * (y2 - y1) / distance;
+
+        let pull = this.positive == character.negative;
+        let push = this.positive == character.positive;
+
+        if (pull) {
+            this.applyVelocity(vmaxToPx(vx), vmaxToPx(vy), 20);
+        }
+        else if (push) {
+            this.applyVelocity(vmaxToPx(-vx), vmaxToPx(-vy), 20);
+        }
+    });
+}
+
+//for setting an element height, width, and hue
+divStyle.setProperty("--characterHeight", (0.1086987634790996 * this.mass) + 4.89044251628942 + "vmax");
+divStyle.setProperty("--characterWidth", (0.1086987634790996 * this.mass) + 4.89044251628942 + "vmax");
+divStyle.setProperty("--hue", (-72.727 * this.electronegativity) + 290.909); // 0 - 360 (0 is red, 120 is green, and 240 is blue)
+
+//window scroll function for character
+if (this.x + this.widthPx > window_width + getScrollOffset()[0]) {
+    window.scrollBy({
+        left: vmaxToPx(this.characterController.moveamount),
+    });
+}
+if (this.x < getScrollOffset()[0]) {
+    window.scrollBy({
+        left: -vmaxToPx(this.characterController.moveamount),
+    });
+}
+if (this.y + this.heightPx > window_height + getScrollOffset()[1]) {
+    window.scrollBy({
+        top: vmaxToPx(this.characterController.moveamount),
+    });
+}
+if (this.y < getScrollOffset()[1]) {
+    window.scrollBy({
+        top: -vmaxToPx(this.characterController.moveamount),
+    });
+}
+
+export function getScrollOffset() {
+    var scrollX = window.pageXOffset !== undefined ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;
+    var scrollY = window.pageYOffset !== undefined ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+  
+    return [scrollX, scrollY];
+}
+
+let elementName = compoundSymbol[0];
+        for (let i = 1; i < this.compoundSymbol.length; i++) {
+            if (isNaN(compoundSymbol[i])) { //runs if the current index is not a number
+                if (compoundSymbol[i] === compoundSymbol[i].toUpperCase() && i == this.compoundSymbol.length - 1) {
+                    console.log (1 + ": " + i)
+
+                    this.elementList.push(elementName);
+                    this.elementList.push(compoundSymbol[i]);
+                }
+                else if (i == this.compoundSymbol.length - 1) {
+                    console.log (2 + ": " + i)
+
+                    elementName += this.compoundSymbol[i];
+                    this.elementList.push(elementName);
+                }
+                else if (compoundSymbol[i] === compoundSymbol[i].toUpperCase() && isNaN(compoundSymbol[i + 1])) {
+                    console.log (3 + ": " + i)
+
+                    this.elementList.push(elementName);
+                    elementName = compoundSymbol[i];
+                }
+                else if (compoundSymbol[i] === compoundSymbol[i].toUpperCase()) {
+                    this.elementList.push(elementName);
+                }
+                else elementName += compoundSymbol[i];
+            }
+            else { //runs if current index is a number
+                console.log("hello")
+                if (i < compoundSymbol.length - 1 && isNaN(compoundSymbol[i + 1])) {
+                    elementName += " * " + compoundSymbol[i];
+                    this.elementList.push(elementName);
+                }
+                else {
+                    let number = compoundSymbol[i];
+                    for (let j = i + 1; j < compoundSymbol.length; j++) {
+                        if (!isNaN(compoundSymbol[j])) number += compoundSymbol[j];
+                        else {
+                            elementName += " * " + number;
+                            i = j;
+                            break;
+                        }
+                    }
+                }
+                if (i == this.compoundSymbol.length - 1) {
+                    this.elementList.push(elementName);
+                    console.log("4")
+                }
+            }
+        }
+
+        console.log(this.elementList);
+        console.log("Compound name: " + this.compoundSymbol)

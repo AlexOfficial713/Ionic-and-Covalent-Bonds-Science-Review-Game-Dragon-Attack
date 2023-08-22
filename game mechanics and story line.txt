@@ -1,0 +1,14 @@
+ionic: soluble in polar solvents (such as water). They also have high melting and boiling points
+
+covalent: soluble in nonpolar solvents since they share similar electron density characteristic. They also have low boiling and melting points
+
+Beginning task: At first you must go through two different dungeons in which in each dungeon you will create a water and lava sword.
+The water sword will be created by making a water molecule and then molding a sword using those molecules. The lava sword will be obtained
+by solving a pad lock which can be unlocked by solving different questions based on whether a compound is ionic or covalent.
+
+The battle: Now that the beginning is finished a room at the top will open and once you go through you will be met by a dragon that is a hybrid
+of a dragon mixed with chemical waste. The dragon will throw chemicals at the player which can be destroyed by attacking the with the lava
+or water sword (Lava for covalent and Water for ionic). Using the wrong sword will result in loss of health points for the player. The player
+will also have abilities (Not yet determined). That will help the player get close to the dragon and attack the dragon with the players sword.
+The drogon will also switch states between ionic and covalent chemical waste in which the water or lava sword will do more damage based on the
+state of the dragon.
