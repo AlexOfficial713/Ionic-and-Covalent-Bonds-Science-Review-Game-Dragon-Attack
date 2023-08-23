@@ -8,7 +8,7 @@ export default class Dragon extends Character {
         super(vmaxToPx(38), 50, 24, 18, "./images/used images/Chemical Dragon.png");
 
         this.summonCooldown = false;
-        this.initialHealth = 150;
+        this.initialHealth = 200;
         this.health = this.initialHealth;
         this.healthbar = document.createElement("div");
         this.healthbar.style.position = "absolute";
