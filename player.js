@@ -72,7 +72,7 @@ export default class Player extends Character {
             this.setPos(0, this.y);
             x = 0;
         }
-        if (this.y + y < dragon.y + (dragon.widthPx / 2)) {
+        if (this.y + y < dragon.y + (dragon.widthPx / 2) && y < 0) {
             y = 0;
         }
         if (this.x + this.widthPx + x > window_width) {
