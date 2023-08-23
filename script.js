@@ -107,7 +107,7 @@ function beginGame() {
     let moreChanceForCompSpawn = function() {
         if (randChanceForCompSpawn >= 300) {
             randChanceForCompSpawn -= 50;
-            setTimeout(()=>{moreChanceForCompSpawn()}, 8000);
+            setTimeout(()=>{moreChanceForCompSpawn()}, 5000);
             console.log(randChanceForCompSpawn);
         }
         if (randChanceForCompSpawn < 300) {randChanceForCompSpawn = 299};
