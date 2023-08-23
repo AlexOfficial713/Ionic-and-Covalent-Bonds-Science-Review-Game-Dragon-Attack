@@ -173,7 +173,7 @@ function beginGame() {
                 if (randPowerUpType == 4) {
                     let posX = randX;
                     let posY = randY;
-                    let randAmount = Math.floor(Math.random() * 20) + 10;
+                    let randAmount = Math.floor(Math.random() * 6) + 5;
                     let damageDragon = new PowerUp(powerUpLabelList[randPowerUpType], posX, posY, 0, 0, () => {
                         for (let i = 0; i < randAmount; i++) {
                             let timeout = (i == 0) ? 0 : Math.floor(Math.random() * 1500);
